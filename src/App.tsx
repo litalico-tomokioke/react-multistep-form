@@ -2,6 +2,13 @@ import * as React from "react";
 import styled from "@emotion/styled";
 import Header from "./Header";
 import ProgressBar from "./ProgressBar";
+import FixedNextButton from "./FixedNextButton";
+
+const Root = styled.div`
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+`;
 
 const ProgressBarLayout = styled.div`
   width: 100%;
@@ -11,10 +18,11 @@ const ProgressBarLayout = styled.div`
 `;
 
 export default () => (
-  <>
+  <Root>
     <Header />
     <ProgressBarLayout>
       <ProgressBar />
     </ProgressBarLayout>
-  </>
+    <FixedNextButton />
+  </Root>
 );
