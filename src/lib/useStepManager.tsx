@@ -15,7 +15,7 @@ export default (maxStep: number): StepManager => {
     setStep((step) => {
       return step <= maxStep ? step + 1 : step;
     });
-  }, []);
+  }, [maxStep]);
 
   const back = React.useCallback(() => {
     setStep((step) => {
