@@ -8,7 +8,7 @@ type Props = {
 
 const Bar = styled.div`
   width: 480px;
-  max-width: 80%;
+  max-width: 60%;
   height: 12px;
   border-radius: 12px;
   border: solid 1px #dcdee0;
