@@ -29,6 +29,4 @@ const View: React.FC<Props> = ({ step, maxStep }) => {
   );
 };
 
-export default () => {
-  return <View step={1} maxStep={5} />;
-};
+export default View;

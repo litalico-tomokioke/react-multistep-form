@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
+type Props = { onClick: () => void };
+
 const Layout = styled.div`
   position: fixed;
   bottom: 0;
@@ -10,7 +12,7 @@ const Layout = styled.div`
   align-items: center;
 `;
 
-const View = styled.button`
+const Button = styled.button`
   display: block;
   width: 480px;
   max-width: 100%;
@@ -21,8 +23,12 @@ const View = styled.button`
   padding: 18px;
 `;
 
-export default () => (
+const View: React.FC<Props> = ({ onClick }) => (
   <Layout>
-    <View type="button">Next</View>
+    <Button type="button" onClick={onClick}>
+      Next
+    </Button>
   </Layout>
 );
+
+export default View;

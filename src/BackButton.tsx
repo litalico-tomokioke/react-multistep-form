@@ -1,6 +1,8 @@
 import * as React from "react";
 import styled from "@emotion/styled";
 
+type Props = { onClick: () => void };
+
 const Circle = styled.button`
   position: absolute;
   top: 0;
@@ -20,12 +22,12 @@ const Arrow = styled.span`
   color: #314c85;
 `;
 
-const View = () => {
+const View: React.FC<Props> = ({ onClick }) => {
   return (
-    <Circle>
+    <Circle onClick={onClick}>
       <Arrow>&lt;</Arrow>
     </Circle>
   );
 };
 
-export default () => <View />;
+export default View;
