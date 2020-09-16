@@ -24,7 +24,7 @@ const Arrow = styled.span`
 
 const View: React.FC<Props> = ({ onClick }) => {
   return (
-    <Circle onClick={onClick}>
+    <Circle type="button" onClick={onClick}>
       <Arrow>&lt;</Arrow>
     </Circle>
   );

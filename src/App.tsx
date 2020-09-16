@@ -5,14 +5,24 @@ import ProgressBar from "./ProgressBar";
 import FixedNextButton from "./FixedNextButton";
 import BackButton from "./BackButton";
 import useStepManager, { StepManager } from "./lib/useStepManager";
+import { FormContextProvider } from "./FormContext";
+import {
+  ColorForm,
+  InterestsForm,
+  NameForm,
+  TelForm,
+  EmailForm,
+} from "./stepContent";
 
 const MAX_STEP = 5 as const;
 type Props = { maxStep: number } & StepManager;
 
 const Root = styled.div`
   position: relative;
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  max-width: 480px;
+  height: calc(100vh + 128px);
+  margin: 0 auto;
 `;
 
 const ProgressLayout = styled.div`
@@ -26,6 +36,23 @@ const ProgressLayout = styled.div`
   align-items: center;
 `;
 
+const SlotStepContent: React.FC<{ step: number }> = ({ step }) => {
+  switch (step) {
+    case 1:
+      return <ColorForm />;
+    case 2:
+      return <InterestsForm />;
+    case 3:
+      return <NameForm />;
+    case 4:
+      return <TelForm />;
+    case 5:
+      return <EmailForm />;
+    default:
+      return null;
+  }
+};
+
 const View: React.FC<Props> = ({ maxStep, step, isLastStep, next, back }) => (
   <Root>
     <Header />
@@ -33,12 +60,17 @@ const View: React.FC<Props> = ({ maxStep, step, isLastStep, next, back }) => (
       {step > 1 && <BackButton onClick={back} />}
       <ProgressBar maxStep={maxStep} step={step} />
     </ProgressLayout>
-    <FixedNextButton onClick={next} />
+    <SlotStepContent step={step} />
+    <FixedNextButton isLastStep={isLastStep} onClick={next} />
   </Root>
 );
 
 export default () => {
   const stepManager = useStepManager(MAX_STEP);
 
-  return <View {...stepManager} maxStep={MAX_STEP} />;
+  return (
+    <FormContextProvider>
+      <View {...stepManager} maxStep={MAX_STEP} />
+    </FormContextProvider>
+  );
 };
